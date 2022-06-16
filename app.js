@@ -12,7 +12,7 @@ function renderGifs(gifs) {
     const data = gifs["data"];
     console.log('data: ', data);
     for(let i = 0; i < data.length; i++) {
-        results.innerHTML +=    `<div>
+        results.innerHTML +=    `<div class="image-container">
                                 <img src="${data[i]["images"]["original"]["url"]}" alt="${data[i]["title"]}">
                                 <div class='image-title'>${data[i]["title"]}</div>
                                 <div class='user'>${data[i]["username"]}</div>
@@ -32,6 +32,18 @@ async function fetchGifs() {
     }
 }
 
+async function trending() {
+    try {
+        const response = await fetch(searchParams);
+        const results = await response.json();
+        console.log('results: ', results);
+        renderGifs(results);
+    }
+    catch {
+
+    }
+}
+
 submit.addEventListener('submit', (event) => {
     event.preventDefault();
     offset = 0;
@@ -46,3 +58,8 @@ loadMore.addEventListener('click', (event) => {
     fetchGifs();
 });
 
+ window.onload = function () {
+    console.log("hi");
+    searchParams = "https://api.giphy.com/v1/gifs/trending?api_key=i2qJHc29PphPkoRtxjHuzFxQL2kRjLHd&limit=25&rating=g";
+    trending();
+}
