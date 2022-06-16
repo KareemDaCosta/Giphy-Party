@@ -10,8 +10,13 @@ var limits = `&limit=${limit}&offset=${offset}&rating=g&lang=en`;
 
 function renderGifs(gifs) {
     const data = gifs["data"];
+    console.log('data: ', data);
     for(let i = 0; i < data.length; i++) {
-        results.innerHTML += `<img src="${data[i]["images"]["original"]["url"]}" />`;
+        results.innerHTML +=    `<div>
+                                <img src="${data[i]["images"]["original"]["url"]}" alt="${data[i]["title"]}">
+                                <div class='image-title'>${data[i]["title"]}</div>
+                                <div class='user'>${data[i]["username"]}</div>
+                                </div>`;
     }
 }
 

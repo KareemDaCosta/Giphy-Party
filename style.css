@@ -1,3 +1,13 @@
-.results {
+#results {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.image-title {
+    font-size: 22px;
+}
+
+.user {
+    font-size: 18px;
 }
